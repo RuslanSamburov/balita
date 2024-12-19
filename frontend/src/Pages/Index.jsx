@@ -1,9 +1,10 @@
 import React from 'react'
+import SiteSection from '../Components/SiteSection'
 
 export default function Index() {
     return (
-        <>
-            123
-        </>
+        <SiteSection classes={['pt-5']}>
+            
+        </SiteSection>
     )
 }

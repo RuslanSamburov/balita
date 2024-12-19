@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-export default function NavLink({ children, to, active = false, dropdown = false, ...props }) {
+export default function NavLink({ children, ...props }) {
+    const isActive = useLocation().pathname == props.to;
+
     return (
-        <Link to={to} className={`nav-link ${active ? 'active' : ''} ${dropdown ? 'dropdown-toggle' : ''}`} {...props}>{children}</Link>
+        <Link className={`nav-link ${isActive ? 'active' : ''}`} {...props}>{children}</Link>
     )
 }

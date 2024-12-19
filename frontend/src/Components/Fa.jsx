@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Fa({ name, classes = [] }) {
+export default function Fa({ name, className = null }) {
     return (
         <span 
-            className={`${classes.join(' ')} fa fa-${name}`} 
+            className={`${className} fa fa-${name}`} 
         ></span>
     );
 }

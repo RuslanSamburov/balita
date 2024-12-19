@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Navbar({ children, classes }) {
+export default function Navbar({ children, className = null }) {
     return (
-        <ul class={"navbar-nav " + classes.join(' ')}>
+        <ul className={"navbar-nav " + className}>
             {children}
         </ul>
     )

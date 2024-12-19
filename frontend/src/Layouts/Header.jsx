@@ -1,66 +1,97 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Fa from '../Components/Fa'
+import Container from '../Components/Container'
+import Row from '../Components/Row'
 import Navbar from '../Components/Nav/Navbar'
 import NavItem from '../Components/Nav/NavItem'
 import NavLink from '../Components/Nav/NavLink'
 import DropdownMenu from '../Components/Nav/DropdownMenu'
-import DropdownItem from '../Components/Nav/DropdownItem'
 import { Link } from 'react-router-dom'
+import DropdownToggle from '../Components/Nav/DropdownToggle'
+import DropdownItem from '../Components/Nav/DropdownItem'
 
 export default function Header() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        setCategories([
+            {
+                id: 1,
+                name: 'Lifestyle',
+                to: 'lifestyle',
+            },
+            {
+                id: 2,
+                name: 'Food',
+                to: 'food',
+            },
+            {
+                id: 3,
+                name: 'Adventure',
+                to: 'adventure',
+            },
+            {
+                id: 4,
+                name: 'Travel',
+                to: 'travel',
+            },
+            {
+                id: 5,
+                name: 'Business',
+                to: 'business',
+            },
+        ]);
+    }, []);
+
     return (
         <header role="banner">
-            <div class="top-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-9 social">
-                            <a href="#"><Fa name="twitter" /></a>
+            <div className="top-bar">
+                <Container>
+                    <Row>
+                        <div className="col-9 social">
+                            <a href="#"><Fa name="twitter"/></a>
                             <a href="#"><Fa name="facebook" /></a>
                             <a href="#"><Fa name="instagram" /></a>
                             <a href="#"><Fa name="youtube-play" /></a>
                             <a href="#"><Fa name="vimeo" /></a>
                             <a href="#"><Fa name="snapchat" /></a>
                         </div>
-                        <div class="col-3 search-top">
-                            <form action="#" class="search-top-form">
-                                <Fa classes={['icon']} name="search"/>
+                        <div className="col-3 search-top">
+                            <form action="#" className="search-top-form">
+                                <Fa className="icon" name="search"/>
                                 <input type="text" id="s" placeholder="Type keyword to search..."/>
                             </form>
                         </div>
-                    </div>
-                </div>
+                    </Row>
+                </Container>
             </div>
 
-            <div class="container logo-wrap">
-                <div class="row pt-5">
-                    <div class="col-12 text-center">
-                        <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-                        <h1 class="site-logo"><Link to="/">Balita</Link></h1>
+            <Container className="logo-wrap">
+                <Row className="pt-5">
+                    <div className="col-12 text-center">
+                        <a className="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span className="burger-lines"></span></a>
+                        <h1 className="site-logo"><Link to="/">Balita</Link></h1>
                     </div>
-                </div>
-            </div>
+                </Row>
+            </Container>
 
-            <nav class="navbar navbar-expand-md navbar-light bg-light">
-                <div class="container">
-                    <div class="collapse navbar-collapse" id="navbarMenu">
-                        <Navbar classes={['mx-auto']}>
+            <nav className="navbar navbar-expand-md navbar-light bg-light">
+                <Container>
+                    <div className="collapse navbar-collapse" id="navbarMenu">
+                        <Navbar className="mx-auto">
                             <NavItem>
-                                <NavLink active to="/">Home</NavLink>
+                                <NavLink to="/">Home</NavLink>
                             </NavItem>
 
                             <NavItem dropdown>
-                                <NavLink dropdown to="category" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</NavLink>
+                                <DropdownToggle id="dropdown05">Categories</DropdownToggle>
                                 <DropdownMenu aria-labelledby="dropdown05">
-                                    <DropdownItem to="category">Lifestyle</DropdownItem>
-                                    <DropdownItem to="food">Food</DropdownItem>
-                                    <DropdownItem to="adventure">Adventure</DropdownItem>
-                                    <DropdownItem to="travel">Travel</DropdownItem>
-                                    <DropdownItem to="business">Business</DropdownItem>
+                                    {categories.map(x => <DropdownItem key={x.id} to={x.to}>{x.name}</DropdownItem>)}
                                 </DropdownMenu>
                             </NavItem>
 
                             <NavItem>
-                                <NavLink to="/bout">About</NavLink>
+                                <NavLink to="/about">About</NavLink>
                             </NavItem>
 
                             <NavItem>
@@ -68,7 +99,7 @@ export default function Header() {
                             </NavItem>
                         </Navbar>
                     </div>
-                </div>
+                </Container>
             </nav>
         </header>
     )

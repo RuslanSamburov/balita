@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function DropdownItem({ children, to, ...props }) {
+export default function DropdownItem({ children, ...props }) {
     return (
-        <Link to={to} class="dropdown-item" {...props}>{children}</Link>
+        <Link className="dropdown-item" {...props}>{children}</Link>
     )
 }

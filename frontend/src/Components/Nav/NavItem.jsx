@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function NavItem({ dropdown=false, children }) {
+export default function NavItem({ children, dropdown=false }) {
     return (
-        <li class={`nav-item ${dropdown ? 'dropdown' : ''}`}>
+        <li className={`nav-item ${dropdown ? 'dropdown' : ''}`}>
             {children}
         </li>
     )
